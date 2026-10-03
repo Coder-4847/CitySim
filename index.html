@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#203a3e">
+  <title>CitySim — A city of your making</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232c5550'/%3E%3Cpath d='M12 48V26h12v22m5 0V14h12v34m5 0V32h8v16' fill='%23eddfbb'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="src/ui/styles.css">
+</head>
+<body>
+  <canvas id="world" aria-label="Isometric city map. Use the construction toolbar and drag on the map to build."></canvas>
+  <main id="menu" class="menu-layer">
+    <div class="menu-brand"><span class="eyebrow">YOUR NEXT GREAT PLACE</span><h1>City<span>Sim</span><span class="brand-period">.</span></h1><p>A little land.<br>A lot of possibility.</p>
+      <p class="menu-description">Lay the first street. Build a neighborhood.<br>Watch a city find its rhythm.</p><div class="menu-tags"><span>Build</span><span>Connect</span><span>Bring it to life</span></div><nav class="menu-actions" aria-label="Main menu"><button class="primary" id="new-city">Start building <span>↗</span></button><button id="load-city">Continue a city <span>→</span></button><button id="menu-settings">Settings <span>⚙</span></button><button id="credits">Credits <span>＋</span></button></nav>
+      <div class="menu-footer"><span class="edition">THE CITY GROWS</span><span>v1.0 · Build your city</span></div>
+    </div>
+    <div class="scene-caption"><span class="live-dot"></span> A living miniature<span>Original procedural world · simulated growth</span></div>
+  </main>
+  <div id="hud" hidden>
+    <header class="hud-top">
+      <button id="city-menu" class="city-brand" title="City menu"><span class="logo-mark">▥</span><span><strong id="city-name">Willow Bay</strong><small id="city-stage">Settlement</small></span><span class="chevron">⌄</span></button>
+      <div class="city-metrics"><button id="money-button" title="Open the city budget"><small>TREASURY</small><strong id="treasury">$45,000</strong><span id="cashflow">$0 / month</span></button><button id="population-button" title="Open city statistics"><small>RESIDENTS</small><strong id="population">0</strong><span id="employment">0 jobs</span></button><div class="demand-widget" title="Residential, commercial, industrial and office demand"><small>DEMAND</small><div id="demand-bars"></div></div></div>
+      <div class="clock-panel"><small id="weather-label" aria-label="Season and weather"></small><span id="date">Jan 01 · Year 1</span><div class="speed-buttons" role="group" aria-label="Simulation speed"><button data-speed="0" title="Pause (Space)">Ⅱ</button><button data-speed="1" class="active" title="Normal speed">▶</button><button data-speed="3" title="Fast speed">▶▶</button><button data-speed="8" title="Very fast speed">▶▶▶</button></div></div>
+    </header>
+    <button id="government-hub" class="government-hub" title="Schools, healthcare, police, fire, parks, utilities and funding">▥ Government & services</button><aside class="map-controls"><details id="city-tools"><summary aria-label="Open city tools">▦ <span>City tools</span><span class="guide-chevron">⌄</span></summary><div class="tools-content"><label for="overlay-select">MAP LAYERS</label><select id="overlay-select"><option value="none">Natural view</option><option value="zoning">Zoning</option><option value="traffic">Traffic</option><option value="population">Occupancy</option><option value="power">Electricity</option><option value="water">Water</option></select><div id="legend" hidden></div><div class="map-shortcuts"><button id="stats-button" title="City statistics (G)">▥ Statistics</button><button id="save-button" title="Save and load (Ctrl+S)">↧ Save city</button></div></div></details></aside>
+    <aside id="inspector" class="inspector" hidden></aside>
+    <aside id="guide" class="guide"></aside>
+    <button id="alerts-toggle" class="notice-toggle" aria-controls="alerts" aria-expanded="false">✓ City running</button><div id="alerts" class="alerts" hidden></div>
+    <div class="zoom-controls"><button id="zoom-in" title="Zoom in">＋</button><button id="zoom-out" title="Zoom out">−</button><button id="home-camera" title="Center map (Home)">⌂</button></div>
+    <footer class="build-dock"><div class="tool-summary"><div><span id="tool-category" class="eyebrow">CITY PLANNING</span><strong id="tool-name">Inspect the city</strong></div><span id="tool-hint">Click a parcel to see what makes it work.</span><strong id="cost-preview"></strong></div><nav id="toolbar" aria-label="Construction tools"></nav><div class="dock-footer"><span><kbd>WASD</kbd> pan <span class="separator">·</span> Scroll to zoom <span class="separator">·</span> Right-drag to pan</span><span id="status">Your city starts with a road.</span><span><kbd>Esc</kbd> inspect <span class="separator">·</span> <kbd>F3</kbd> debug</span></div></footer>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+  <dialog id="dialog"><div id="dialog-content"></div></dialog>
+  <input id="import-file" type="file" accept=".json,application/json" hidden>
+  <script type="module" src="src/ui/app.js"></script>
+</body>
+</html>

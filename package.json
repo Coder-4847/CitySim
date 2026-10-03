@@ -1,0 +1,17 @@
+{
+  "name": "citysim",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An original, systemic miniature city builder",
+  "scripts": {
+    "start": "node tools/server.mjs",
+    "test": "node --test --test-isolation=none tests/*.test.mjs",
+    "benchmark": "node --expose-gc tools/benchmark.mjs",
+    "benchmark:large": "node --expose-gc tools/benchmark.mjs --large",
+    "build": "node tools/package.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
